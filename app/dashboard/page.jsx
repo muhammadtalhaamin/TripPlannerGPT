@@ -1,4 +1,3 @@
-// trip-planner-dashboard.js
 'use client'
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -63,10 +62,6 @@ const TripPlannerDashboard = () => {
   const [activityImages, setActivityImages] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const inputRef = useRef(null);
-
-  const destinations = ['Paris, France', 'London, UK', 'New York, USA', 'Tokyo, Japan', 'Barcelona, Spain', 'Rome, Italy'];
-
-  const filteredDestinations = destinations.filter(dest => dest.toLowerCase().includes(destination.toLowerCase()));
 
   const handleGenerateTrip = async () => {
     setIsLoading(true);
@@ -263,66 +258,53 @@ const TripPlannerDashboard = () => {
     };
   }, []);
 
-  // const TripPlanDisplay = ({ plan }) => (
-  //   <div className="space-y-8" id="trip-plan">
-  //     <section className="bg-white p-6 rounded-lg shadow-sm">
-  //       <h2 className="text-4xl font-bold mb-8 items-center text-center">🚀🚀🚀 Your Customized Trip Plan 🚀🚀🚀</h2>
-  //       <h2 className="text-2xl font-bold mb-4">Recommended Hotels</h2>
-  //       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  //         {plan.hotels.map((hotel, index) => (
-  //           <Card key={index} className="overflow-hidden cursor-pointer ">
-  //             <CardContent className="p-4">
-  //               <h3 className="font-semibold text-lg">{hotel.name}</h3>
-  //               <p className="text-sm text-gray-600 mt-2">{hotel.description}</p>
-  //               <div className="flex items-center gap-1 text-gray-500 mt-2">
-  //                 <MapPin className="w-4 h-4" />
-  //                 <span className="text-sm">{hotel.address}</span>
-  //               </div>
-  //             </CardContent>
-  //           </Card>
-  //         ))}
-  //       </div>
-  //     </section>
+  const travelCompanionIcons = {
+    solo: <User />,
+    couple: <Heart />,
+    family: <Users />
+  };
 
   const TripPlanDisplay = ({ plan }) => (
     <div className="space-y-8" id="trip-plan">
       <section className="bg-white p-6 rounded-lg shadow-sm">
-        <h2 className="text-4xl font-bold mb-8 items-center text-center">🚀🚀🚀 Your Customized Trip Plan 🚀🚀🚀</h2>
+        <h2 className="text-4xl font-bold mb-8 items-center text-center"> Your Customized Trip Plan </h2>
         <h2 className="text-2xl font-bold mb-4">Recommended Hotels</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {plan.hotels.map((hotel, index) => (
             <Card
-            key={index}
-            className="overflow-hidden cursor-pointer"
-            onClick={() => {
-              const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.name)}&query_place_id=${encodeURIComponent(hotel.name)}&query_location=${hotel.coordinates.latitude},${hotel.coordinates.longitude}`;
-              window.open(googleMapsUrl, '_blank');
-            }}
-          >
-            <CardContent className="p-4">
-              <h3 className="font-semibold text-lg">{hotel.name}</h3>
-              <div className="flex items-center gap-1 text-gray-500 mt-2">
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm">{hotel.address}</span>
-              </div>
-            </CardContent>
-          </Card>
+              key={index}
+              className="overflow-hidden cursor-pointer hover:text-gray-400"
+              onClick={() => {
+                const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.name)}&query_place_id=${encodeURIComponent(hotel.name)}&query_location=${hotel.coordinates.latitude},${hotel.coordinates.longitude}`;
+                window.open(googleMapsUrl, '_blank');
+              }}
+            >
+              <CardContent className="p-4">
+                <h3 className="font-semibold text-lg">{hotel.name}</h3>
+                <div className="flex items-center gap-1 text-gray-500 mt-2">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-sm">{hotel.address}</span>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
 
       <section className="bg-white p-6 rounded-lg shadow-sm">
         <h2 className="text-2xl font-bold mb-4">Daily Itinerary</h2>
-        {/* <p className="text-gray-600 mb-6">
-          Best time to visit: {plan.itinerary.bestTimeToVisit}
-        </p> */}
+      
         <div className="space-y-8">
           {plan.itinerary.dailyPlans.map((day, dayIndex) => (
             <div key={dayIndex} className="border-b pb-6 last:border-b-0">
               <h3 className="text-xl font-semibold mb-4">Day {day.day}</h3>
               <div className="space-y-4">
                 {day.activities.map((activity, actIndex) => (
-                  <Card key={actIndex} className="p-4 cursor-pointer">
+                  <Card key={actIndex} className="p-4 cursor-pointer hover:text-gray-400"
+                  onClick={() => {
+                    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.placeName)}&query_place_id=${encodeURIComponent(activity.placeName)}&query_location=${activity.coordinates.latitude},${activity.coordinates.longitude}`;
+                    window.open(googleMapsUrl, '_blank');
+                  }}>
                     <div className="flex flex-col md:flex-row gap-4">
                       <img
                         src={activityImages[`${day.day}-${actIndex}`] || 'https://picsum.photos/400/200?random'}
@@ -348,7 +330,7 @@ const TripPlannerDashboard = () => {
                           </div>
                           <div className="flex items-center gap-1">
                             <MapPin className="w-4 h-4 text-gray-500" />
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm ">
                               {activity.coordinates.latitude}, {activity.coordinates.longitude}
                             </span>
                           </div>
@@ -362,11 +344,19 @@ const TripPlannerDashboard = () => {
                 <h4 className="font-semibold mb-2">Meals</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {day.meals.map((meal, mealIndex) => (
-                    <Card key={mealIndex} className="p-4 cursor-pointer">
-                      <h5 className="font-semibold capitalize">{meal.type}</h5>
+                    <Card key={mealIndex} className="p-4 cursor-pointer hover:text-gray-400"
+                    onClick={() => {
+                      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(meal.restaurantName)}&query_place_id=${encodeURIComponent(meal.restaurantName)}`;
+                      window.open(googleMapsUrl, '_blank');
+                    }}>
+                      <div className="companion-icon ml-1">
+                        {travelCompanionIcons[travelWith]}
+                      </div>
+                      <h5 className="font-semibold capitalize">{meal.type} </h5>
                       <p className="text-sm font-medium">{meal.restaurantName}</p>
                       <p className="text-sm text-gray-600">{meal.cuisine}</p>
                       <p className="text-sm text-gray-600">$ {meal.priceRange}</p>
+                      
                     </Card>
                   ))}
                 </div>
@@ -387,12 +377,12 @@ const TripPlannerDashboard = () => {
   );
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-gray-50">
+    <div className="max-w-5xl mx-auto p-6 bg-gray-50 mb-5">
       {!viewTripPlan ? (
         <div className="space-y-6">
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-gray-900">
-              🚀🌟 Plan Your Perfect Trip 🌟🚀
+               Plan Your Perfect Trip 
             </h1>
           </div>
 

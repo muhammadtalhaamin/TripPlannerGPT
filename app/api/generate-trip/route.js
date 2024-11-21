@@ -1,13 +1,15 @@
-// app/api/generate-trip/route.js
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 
+// Initialize the OpenAI client with the API key from environment variables
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
+// Define the system prompt that sets the behavior of the assistant
 const SYSTEM_PROMPT = `You are a travel planning assistant that always responds with valid JSON data that exactly matches the specified structure.`;
 
+// Function to create a user prompt based on destination, day, budget, travel companions.
 const createUserPrompt = (destination, day, budget, travelWith, usedPlaces, usedMeals) => {
   return `Create day ${day} of the itinerary for a ${destination} trip (${travelWith}, ${budget} budget).
 
@@ -62,7 +64,9 @@ const createUserPrompt = (destination, day, budget, travelWith, usedPlaces, used
   }`;
 };
 
+// Asynchronous POST handler function
 export async function POST(request) {
+  // Check if the OpenAI API key is configured
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json(
       { error: 'OpenAI API key is not configured' },
@@ -80,7 +84,8 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
+    
+    // Create a chat completion using OpenAI API
     const completion = await openai.chat.completions.create({
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
@@ -91,7 +96,8 @@ export async function POST(request) {
       max_tokens: 1000,
       response_format: { type: "json_object" }
     });
-
+    
+    // Extract the content from the completion response
     const content = completion.choices?.[0]?.message?.content;
     if (!content) {
       throw new Error('No response content from OpenAI');
@@ -106,7 +112,8 @@ export async function POST(request) {
         dayPlan.meals.length !== 3) {
       throw new Error('Invalid response structure from AI');
     }
-
+    
+    // Return the validated day plan as a JSON response
     return NextResponse.json(dayPlan);
 
   } catch (error) {

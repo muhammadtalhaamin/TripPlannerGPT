@@ -71,12 +71,12 @@ Open your browser and navigate to `http://localhost:3000`.
 ## Screenshots
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/public/trip-planner-gpt-template-homepage.png?raw=true" alt="TriviaPlannerGPT Homepage screenshot" style="width: 49%; border: 2px solid black;" />
-  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/trivia-quiz-gpt-template-quiz-arena.png?raw=true" alt="TriviaQuizGPT Quiz Arena screenshot" style="width: 49%; border: 2px solid black;" />
+  <img src="https://github.com/0xmetaschool/TripPlannerGPT/blob/main/public/public/trip-planner-gpt-template-homepage.png?raw=true" alt="TriviaPlannerGPT homepage screenshot" style="width: 49%; border: 2px solid black;" />
+  <img src="https://github.com/0xmetaschool/TripPlannerGPT/blob/main/public/trip-planner-gpt-template-popular-destination.png?raw=true" alt="TripPlannerGPT popular destination screenshot" style="width: 49%; border: 2px solid black;" />
 </div>
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/trivia-quiz-gpt-template-quiz-result.png?raw=true" alt="TriviaQuizGPT Quiz Result screenshot" style="width: 49%; border: 2px solid black;" />
-  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/trivia-quiz-gpt-template-custom-quiz-generation.png?raw=true" alt="TriviaQuizGPT Custom Quiz Generation screenshot" style="width: 49%; border: 2px solid black;" />
+  <img src="https://github.com/0xmetaschool/TripPlannerGPT/blob/main/public/trip-planner-gpt-template-dashboard.png?raw=true" alt="TripPlannerGPT dashboard screenshot" style="width: 49%; border: 2px solid black;" />
+  <img src="https://github.com/0xmetaschool/TripPlannerGPT/blob/main/public/trip-planner-gpt-template-custom-trip-plan.png?raw=true" alt="TripPlannerGPT custom trip plan screenshot" style="width: 49%; border: 2px solid black;" />
 </div>
 
 

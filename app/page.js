@@ -33,7 +33,7 @@ const FAQItem = ({ question, answer }) => {
   );
 };
 
-// Updated SearchForm component with autocomplete
+// SearchForm component with autocomplete
 const SearchForm = () => {
   const router = useRouter();
   const [destination, setDestination] = useState('');
@@ -42,13 +42,15 @@ const SearchForm = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef(null);
 
+   // Function to handle form submission
   const handleSearch = (e) => {
     e.preventDefault();
     if (destination) {
       router.push(`/dashboard?destination=${encodeURIComponent(destination)}&dates=${encodeURIComponent(dates)}`);
     }
   };
-
+  
+  // Function to fetch destination suggestions
   const fetchSuggestions = async (query) => {
     try {
       const response = await axios.get(
@@ -60,6 +62,7 @@ const SearchForm = () => {
     }
   };
 
+  // Function to handle input change and fetch suggestions
   const handleInputChange = (e) => {
     const value = e.target.value;
     setDestination(value);
@@ -71,11 +74,13 @@ const SearchForm = () => {
     }
   };
 
+  // Function to handle suggestion click
   const handleSuggestionClick = (suggestion) => {
     setDestination(suggestion.properties.formatted);
     setShowSuggestions(false);
   };
 
+  // Effect to close suggestions when clicking outside the input
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
@@ -140,7 +145,7 @@ const SearchForm = () => {
   );
 };
 
-// Rest of the components remain the same...
+// Component to display popular destinations
 const PopularDestination = ({ image, name, rating, price, description }) => (
   <div className="relative group overflow-hidden rounded-xl cursor-pointer">
     <div className="aspect-w-16 aspect-h-9">
@@ -172,6 +177,7 @@ const PopularDestination = ({ image, name, rating, price, description }) => (
   </div>
 );
 
+// Component to display testimonials
 const TestimonialCard = ({ avatar, name, location, text }) => (
   <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
     <div className="flex items-center space-x-4 mb-4">
@@ -185,6 +191,7 @@ const TestimonialCard = ({ avatar, name, location, text }) => (
   </div>
 );
 
+// Component to display stats
 const StatsCard = ({ number, label }) => (
   <div className="text-center">
     <h3 className="text-4xl font-bold mb-2">{number}</h3>
@@ -192,6 +199,7 @@ const StatsCard = ({ number, label }) => (
   </div>
 );
 
+// Main Home component
 export default function Home() {
   const popularDestinations = [
     {
