@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trip Planner GPT
+TripPlannerGPT is your ultimate AI-powered trip planning assistant. Forget the hassle of research and logistics—this app creates personalized travel itineraries in seconds. Whether you're a spontaneous adventurer or a meticulous planner, TripPlannerGPT is your perfect travel companion.
 
-## Getting Started
+Built with Next.js and powered by OpenAI API, this template helps you build an AI-driven platform to make travel planning intuitive, quick, and fun.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Live Demo
+
+[https://ai-trip-planner-indol.vercel.app/](https://ai-trip-planner-indol.vercel.app/)
+
+## Features
+
+- Secure login with Gmail,facebook, github or email/password
+- Generate personalized travel itineraries including best hotels and meals using AI
+- Customize plans based on destination, duration, budget, and trip companions
+- Interactive Google map integration to explore recommended places
+- Download a pdf of the generated trip plan
+
+## Technologies Used
+
+- Next.js and React for Frontend and Backend
+- OpenAI API with GPT-4o model for AI-Powered Features
+- Clerk authentication for Authorization
+
+## Use Cases
+
+- Create detailed, day-by-day travel itineraries tailored to your preferences
+- Explore curated recommendations for attractions, restaurants, and accommodations
+- Stay within your budget with cost-efficient travel options
+- Download and revisit your itineraries for future trips
+
+### Installation Steps
+
+1. Clone the repository:
+ 
+```
+git clone https://github.com/0xmetaschool/TripPlannerGPT.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
+```
+cd TripPlannerGPT
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2. Install dependencies:
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Set up environment variables:
 
-## Learn More
+Create an .env file in the root directory. Add the following variables:
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+OPENAI_API_KEY=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+NEXT_PUBLIC_PEXELS_API_KEY=
+```
 
-## Deploy on Vercel
+4. Run the development server:
+```
+npm run dev
+```
+Open your browser and navigate to `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Screenshots
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/public/trip-planner-gpt-template-homepage.png?raw=true" alt="TriviaPlannerGPT Homepage screenshot" style="width: 49%; border: 2px solid black;" />
+  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/trivia-quiz-gpt-template-quiz-arena.png?raw=true" alt="TriviaQuizGPT Quiz Arena screenshot" style="width: 49%; border: 2px solid black;" />
+</div>
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/trivia-quiz-gpt-template-quiz-result.png?raw=true" alt="TriviaQuizGPT Quiz Result screenshot" style="width: 49%; border: 2px solid black;" />
+  <img src="https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/public/trivia-quiz-gpt-template-custom-quiz-generation.png?raw=true" alt="TriviaQuizGPT Custom Quiz Generation screenshot" style="width: 49%; border: 2px solid black;" />
+</div>
+
+
+## How to Use the Application
+
+1. Sign in using your Google account
+2. Enter your travel preferences like destination, duration, and budget
+3. View your AI-generated itinerary, complete with detailed daily plans
+4. Download to save your trip plans
+5. Use the interactive map to explore nearby attractions
+
+## Contributing
+
+We love contributions! Here's how you can help make the project even better:
+
+- Fork the project (gh repo fork https://github.com/0xmetaschool/TripPlannerGPT/fork)
+- Create your feature branch (git checkout -b feature/AmazingFeature)
+- Commit your changes (git commit -m 'Add some AmazingFeature')
+- Push to the branch (git push origin feature/AmazingFeature)
+- Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/LICENSE) file for details.
+
+## Contact
+
+Please open an issue in the GitHub repository for any queries or support.
