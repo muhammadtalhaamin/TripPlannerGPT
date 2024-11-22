@@ -100,7 +100,7 @@ We love contributions! Here's how you can help make the project even better:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/0xmetaschool/TriviaQuizGPT/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/0xmetaschool/TripPlannerGPT/blob/main/LICENSE) file for details.
 
 ## Contact
 
