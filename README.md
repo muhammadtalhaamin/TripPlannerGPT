@@ -6,7 +6,7 @@ Built with Next.js and powered by OpenAI API, this template helps you build an A
 
 ## Live Demo
 
-[https://ai-trip-planner-indol.vercel.app/](https://ai-trip-planner-indol.vercel.app/)
+[https://trip-planner-gpt.vercel.app/](https://trip-planner-gpt.vercel.app/)
 
 ## Features
 
