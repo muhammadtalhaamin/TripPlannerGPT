@@ -9,9 +9,10 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import axios from 'axios';
 
-// Simplified image cache
+// Simplified image cache to store fetched images
 const imageCache = new Map();
 
+// Function to fetch an image from Pexels API
 const fetchImageFromPexels = async (query) => {
   if (imageCache.has(query)) {
     return imageCache.get(query);
@@ -63,6 +64,7 @@ const TripPlannerDashboard = () => {
   const [suggestions, setSuggestions] = useState([]);
   const inputRef = useRef(null);
 
+  // Function to generate the trip plan
   const handleGenerateTrip = async () => {
     setIsLoading(true);
     setError(null);
@@ -101,6 +103,8 @@ const TripPlannerDashboard = () => {
         ...prevPlan,
         hotels: hotelData.hotels
       }));
+
+      setViewTripPlan(true); // Switch to trip plan view
 
       // Fetch each day's itinerary sequentially
       for (let day = 1; day <= days; day++) {
@@ -143,8 +147,6 @@ const TripPlannerDashboard = () => {
         // Fetch images for the new day's activities
         await fetchImagesForDay(dayPlan);
       }
-
-      setViewTripPlan(true); // Switch to trip plan view
     } catch (err) {
       setError(err.message);
     } finally {
@@ -152,6 +154,7 @@ const TripPlannerDashboard = () => {
     }
   };
 
+  // Function to fetch images for a specific day's activities
   const fetchImagesForDay = async (dayPlan) => {
     const fetchedActivityImages = {};
     for (let actIndex = 0; actIndex < dayPlan.activities.length; actIndex++) {
@@ -165,6 +168,7 @@ const TripPlannerDashboard = () => {
     }));
   };
 
+  // Function to download the trip plan as a PDF
   const downloadTripPlanAsPDF = async () => {
     const input = document.getElementById('trip-plan');
     const buttons = document.querySelectorAll('.no-pdf'); // Add a class to the buttons to exclude them
@@ -218,6 +222,7 @@ const TripPlannerDashboard = () => {
     }
   };
 
+  // Function to fetch destination suggestions
   const fetchSuggestions = async (query) => {
     try {
       const response = await axios.get(
@@ -229,6 +234,7 @@ const TripPlannerDashboard = () => {
     }
   };
 
+  // Function to handle input change and fetch suggestions
   const handleInputChange = (e) => {
     const value = e.target.value;
     setDestination(value);
@@ -240,11 +246,13 @@ const TripPlannerDashboard = () => {
     }
   };
 
+  // Function to handle suggestion click
   const handleSuggestionClick = (suggestion) => {
     setDestination(suggestion.properties.formatted);
     setShowSuggestions(false);
   };
 
+  // Effect to close suggestions when clicking outside the input
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
@@ -258,12 +266,14 @@ const TripPlannerDashboard = () => {
     };
   }, []);
 
+  // Icons for different travel companions
   const travelCompanionIcons = {
     solo: <User />,
     couple: <Heart />,
     family: <Users />
   };
 
+  // Component to display the trip plan
   const TripPlanDisplay = ({ plan }) => (
     <div className="space-y-8" id="trip-plan">
       <section className="bg-white p-6 rounded-lg shadow-sm">
@@ -280,7 +290,7 @@ const TripPlannerDashboard = () => {
               }}
             >
               <CardContent className="p-4">
-                <h3 className="font-semibold text-lg">{hotel.name}</h3>
+                <h3 className="font-semibold text-lg truncate">{hotel.name}</h3>
                 <div className="flex items-center gap-1 text-gray-500 mt-2">
                   <MapPin className="w-4 h-4" />
                   <span className="text-sm">{hotel.address}</span>
@@ -331,7 +341,7 @@ const TripPlannerDashboard = () => {
                           <div className="flex items-center gap-1">
                             <MapPin className="w-4 h-4 text-gray-500" />
                             <span className="text-sm ">
-                              {activity.coordinates.latitude}, {activity.coordinates.longitude}
+                              {activity.placeaddress}
                             </span>
                           </div>
                         </div>

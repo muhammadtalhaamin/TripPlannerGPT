@@ -314,9 +314,6 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold">Popular Destinations</h2>
-            {/* <button className="flex items-center text-black hover:text-gray-600 transition-colors">
-              View all <ChevronRight className="w-4 h-4 ml-1" />
-            </button> */}
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

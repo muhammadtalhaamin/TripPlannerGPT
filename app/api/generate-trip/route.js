@@ -29,6 +29,7 @@ const createUserPrompt = (destination, day, budget, travelWith, usedPlaces, used
       {
         "time": "Time (e.g., 09:00 AM)",
         "placeName": "Place name",
+        "placeaddress": "place address",
         "placeDetails": "Brief details",
         "placeImageUrl": "/api/placeholder/800/600",
         "coordinates": {
@@ -36,8 +37,7 @@ const createUserPrompt = (destination, day, budget, travelWith, usedPlaces, used
           "longitude": "long"
         },
         "ticketPrice": "Price in USD or Free",
-        "duration": "Duration",
-        "tips": "Brief tip"
+        "duration": "Duration"
       },
       // Two more activities
     ],
